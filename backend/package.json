@@ -1,0 +1,24 @@
+{
+  "name": "securequest-backend",
+  "version": "1.0.0",
+  "description": "SecureQuest AI Backend - Gemini",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "securequest",
+    "cybersecurity",
+    "gemini",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@google/genai": "^2.24.0",
+    "dotenv": "^18.0.1",
+    "express": "^5.2.1",
+    "openai": "^7.20.0"
+  }
+}

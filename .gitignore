@@ -1,0 +1,33 @@
+# Android Studio / Gradle
+*.iml
+.gradle
+/local.properties
+local.properties
+
+# Android Studio
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+
+# macOS
+.DS_Store
+
+# Android build
+/build
+/captures
+.externalNativeBuild
+.cxx
+
+# Backend
+/backend/node_modules/
+/backend/.env
+
+# Signing / private keys
+*.jks
+*.keystore
+/recovery/
+# Backup files
+*.backup
