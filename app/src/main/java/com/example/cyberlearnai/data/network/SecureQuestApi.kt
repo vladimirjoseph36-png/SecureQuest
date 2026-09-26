@@ -1,5 +1,6 @@
 package com.example.securequest.data.network
 
+import com.example.securequest.BuildConfig
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -35,8 +36,11 @@ class SecureQuestApi {
             AskRequest(question)
         ).toRequestBody(mediaType)
 
+        val baseUrl = BuildConfig.SECUREQUEST_API_BASE_URL
+            .trimEnd('/')
+
         val request = Request.Builder()
-             .url("http://10.124.178.215:3000/api/ask")
+            .url("$baseUrl/api/ask")
             .post(requestBody)
             .build()
 

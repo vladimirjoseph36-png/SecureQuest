@@ -18,6 +18,15 @@ if (localPropertiesFile.exists()) {
 val revenueCatTestStoreKey =
     localProperties.getProperty("REVENUECAT_TEST_STORE_KEY", "")
 
+val secureQuestApiBaseUrl =
+    localProperties.getProperty(
+        "SECUREQUEST_API_BASE_URL",
+        "http://10.0.2.2:3000"
+    )
+
+fun String.toBuildConfigString(): String =
+    "\"${replace("\\", "\\\\").replace("\"", "\\\"")}\""
+
 android {
     namespace = "com.example.securequest"
     compileSdk = 36
@@ -35,7 +44,13 @@ android {
             buildConfigField(
                 "String",
                 "REVENUECAT_API_KEY",
-                "\"$revenueCatTestStoreKey\""
+                revenueCatTestStoreKey.toBuildConfigString()
+            )
+
+            buildConfigField(
+                "String",
+                "SECUREQUEST_API_BASE_URL",
+                secureQuestApiBaseUrl.toBuildConfigString()
             )
         }
 
@@ -46,6 +61,12 @@ android {
                 "String",
                 "REVENUECAT_API_KEY",
                 "\"\""
+            )
+
+            buildConfigField(
+                "String",
+                "SECUREQUEST_API_BASE_URL",
+                secureQuestApiBaseUrl.toBuildConfigString()
             )
 
             proguardFiles(
@@ -84,46 +105,36 @@ dependencies {
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
-    // Core Android dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
 
-    // Architecture Components
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-    // Compose
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
 
-    // SecureQuest AI Engine
     implementation(libs.okhttp)
     implementation(libs.kotlinx.serialization.json)
 
-    // RevenueCat
     implementation(libs.revenuecat.purchases)
     implementation(libs.revenuecat.purchases.ui)
 
-    // Compose tooling
     debugImplementation(libs.androidx.compose.ui.tooling)
 
-    // Instrumented tests
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    // Local tests
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
 
-    // Android tests
     androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.androidx.test.espresso.core)
 
-    // Navigation
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.lifecycle.viewmodel.navigation3)
